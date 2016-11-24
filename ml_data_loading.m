@@ -24,3 +24,6 @@ for idx = 1: length(data)
 end
 
 save('data/MovieLens/ml-latest-small/rating_matrix_1124.mat', 'rating_matrix');
+
+[RM_train, RM_test] = split(rating_matrix, 0, 0.2);
+save('data/MovieLens/ml-latest-small/RM_train_test_split_1124.mat', 'RM_train', 'RM_test');
