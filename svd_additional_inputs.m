@@ -14,7 +14,7 @@ load('./Data/MovieLens/ml-latest-small/RM_train_test_split_1124.mat');
 %params_grid = struct('lambda', [0.01, 0.05, 0.1, 0.5, 1, 5, 10], 'f', [3,2, 4, 5], ...
 %    'gamma', [0.001, 0.01, 0.1,  1, 10]);
 
-params_grid = struct('lambda', [0.01], 'f', 3, 'gamma', [0.02]);
+params_grid = struct('lambda', [0.001], 'f', 3, 'gamma', [0.002]);
 fp = [];
 for i = 1 : length(params_grid.lambda)
     for j = 1 : length(params_grid.f)
@@ -141,7 +141,7 @@ for fp_idx = 1:size(fp, 1)
         % calculate the average error for cross validation data
         accu_error = 0;
         for k = 1 : length(KU_cv)
-			mask_N_u_cv_u = repmat(mask_N_u_cv(KU_cv(k)), f, 1);
+			mask_N_u_cv_u = repmat(mask_N_u_cv(KU_cv(k),:), f, 1);
 						
             r_hat = U + b_u(KU_cv(k)) + b_i(KI_cv(k)) + Q(:, KI_cv(k))' * ... 
 					(P(:, KU_cv(k)) + 1/sqrt(N_u_cv(KU_cv(k))) * sum(mask_N_u_cv_u.*Y, 2));

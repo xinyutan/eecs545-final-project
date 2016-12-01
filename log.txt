@@ -1,0 +1,7 @@
+## 12/1/2016
+
+Flux running: svd_bias.m and svd_additonal_inputs.m
+
+Tuning parameter for svd_bias.m and get one result for svd_additional_input.m
+
+Remember to change the file name and params_grid
