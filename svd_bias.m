@@ -10,10 +10,10 @@ load('./Data/MovieLens/ml-latest-small/RM_train_test_split_1124.mat');
 % gamma: learning rate 
 % lambda: regularization
 % f: hidden dimension
-% params_grid = struct('lambda', [0.01, 0.05, 0.1, 0.5, 1, 5, 10], 'f', [2, 3, 4, 5], ...
-% 		'gamma', [0.001, 0.01, 0.1,  1, 10]);
+ params_grid = struct('lambda', [0.01, 0.05, 0.1, 0.5, 1, 5, 10], 'f', [3,2, 4, 5], ...
+ 		'gamma', [0.001, 0.01, 0.1,  1, 10]);
 
-params_grid = struct('lambda', [0.01], 'f', 3, 'gamma', [0.001]);
+%params_grid = struct('lambda', [0.01], 'f', 3, 'gamma', [0.001]);
 fp = [];
 for i = 1 : length(params_grid.lambda)
 	for j = 1 : length(params_grid.f)
@@ -40,16 +40,16 @@ KI = KI(rand_idx);
 %% cross validation param tuning
 
 % report the result
-fid = fopen('SVD_112916.txt', 'w');
+fid = fopen('SVD_bias_112916.txt', 'w');
 
 % objective function
 
 error = []
-for i = 1:size(fp, 1)
+for fp_idx = 1:size(fp, 1)
 	% current parameters
-	lambda = fp(i, 1);
-	f = fp(i, 2);
-    gamma = fp(i, 3);
+	lambda = fp(fp_idx, 1);
+	f = fp(fp_idx, 2);
+    gamma = fp(fp_idx, 3);
 	
 	% cross-validaiton
 	cv_error = [];
